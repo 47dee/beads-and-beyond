@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beads &amp; Beyond by Subha</title>
+<meta name="description" content="Handmade beaded bracelets, earrings and more. Made to order.">
+<link rel="icon" href="images/logo.jpg">
+<style>
+:root{--bg:#fef9f1;--cream:#f8ead3;--champ:#efd7b4;--pearl:#fffdf8;--gold:#c99a55;--deep:#94662f;--ink:#4a3b2c;--mute:#8a7861;--line:#ede0cb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Avenir Next",Avenir,"Segoe UI",system-ui,sans-serif;padding-bottom:120px}
+header{text-align:center;padding:26px 16px 4px}
+#logo{width:104px;height:104px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 10px;border:3px solid var(--champ)}
+h1{margin:0;font:500 30px/1.15 Georgia,"Times New Roman",serif;letter-spacing:.2px}
+.by{color:var(--deep);font:italic 18px Georgia,serif;margin:2px 0 0}
+.notice{max-width:640px;margin:18px auto;padding:16px 20px;background:var(--cream);border-left:4px solid var(--gold);border-radius:12px;font-size:14.5px}
+.notice b{display:block;margin-bottom:4px;font-size:15.5px}
+.notice p{margin:0}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:4px 12px}
+.tabs button{border:0;background:var(--cream);color:var(--ink);padding:8px 18px;border-radius:99px;font:inherit;font-size:15px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--deep);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;max-width:1000px;margin:18px auto;padding:0 16px}
+.card{background:var(--pearl);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card.on{border-color:var(--deep);box-shadow:0 0 0 2px var(--deep)}
+.card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--cream)}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
+.name{font-weight:600;line-height:1.3}
+.meta{display:flex;justify-content:space-between;color:var(--mute);font-size:13px;margin-top:2px}
+.price{color:var(--ink);font-weight:600;font-size:15px}
+.qty{display:flex;align-items:center;gap:14px}
+.qty button{width:38px;height:38px;border-radius:50%;border:1px solid var(--deep);background:#fff;color:var(--deep);font-size:20px;line-height:1;cursor:pointer}
+.qty output{min-width:24px;text-align:center;font-weight:600}
+.cz{display:flex;gap:8px;align-items:flex-start;font-size:14px;cursor:pointer;line-height:1.35}
+.cz input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--deep);flex:none}
+.czbox{display:none;flex-direction:column;gap:8px}
+.czbox.open{display:flex}
+.hint{font-size:12.5px;color:var(--mute);line-height:1.4;margin:0}
+textarea,input[type=text]{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);resize:vertical}
+.bar{position:fixed;left:0;right:0;bottom:0;background:rgba(255,253,248,.97);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.bar .in{max-width:620px;margin:auto;display:flex;flex-direction:column;gap:8px}
+.btn{flex:1;padding:13px;border-radius:12px;border:0;font:inherit;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;display:block}
+.go{background:var(--deep);color:#fff}.alt{background:var(--cream);color:var(--ink)}
+.row{display:flex;gap:8px}
+.status{font-size:14px;color:var(--mute);margin:0;min-height:20px;text-align:center}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:8px 16px}
+#po{position:fixed;inset:0;background:var(--bg);overflow:auto;z-index:10;padding:16px 16px 40px}
+#po[hidden]{display:none}
+.po{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.po h2{margin:0;font:500 26px Georgia,serif}
+.back{align-self:flex-start;background:none;border:0;color:var(--deep);font:inherit;font-weight:600;cursor:pointer;padding:4px 0}
+.line{display:flex;gap:12px;background:var(--pearl);border:1px solid var(--line);border-radius:12px;padding:10px}
+.line img{width:64px;height:64px;border-radius:8px;object-fit:cover;flex:none}
+.line .t{flex:1;font-size:14.5px}.line .t small{display:block;color:var(--mute)}
+.line .c{font-size:13px;color:var(--deep);margin-top:2px}
+.tot{display:flex;justify-content:space-between;font-weight:600;font-size:17px;padding:4px 2px}
+.how{background:var(--cream);border-left:4px solid var(--gold);border-radius:12px;padding:14px 18px;font-size:14.5px}
+.how b{display:block;margin-bottom:6px;font-size:15.5px}
+.how ol{margin:0 0 10px;padding-left:20px}.how li{margin-bottom:4px}.how p{margin:0}
+details{font-size:14px;color:var(--mute)}
+pre{white-space:pre-wrap;font:inherit;background:var(--pearl);border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--ink);margin:8px 0 0}
+#fb{display:none;background:var(--cream);border-radius:12px;padding:12px;font-size:14px}
+#fb p{margin:0 0 8px}#fb .alt{background:#fff}
+button:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<header>
+  <img id="logo" src="images/logo.jpg" alt="Beads &amp; Beyond logo" onerror="this.remove()">
+  <h1>Beads &amp; Beyond</h1>
+  <p class="by">by Subha</p>
+</header>
+
+<div class="notice">
+  <b>Made to Order | Production Lead Time</b>
+  <p>All products are made to order. Production begins once your order is confirmed. The production lead time may vary depending on the order quantity, design and customization requirements. The estimated completion timeline will be communicated at the time of order confirmation. Thank you for understanding!</p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<main class="grid" id="grid"><p class="status" style="grid-column:1/-1">Loading products…</p></main>
+<footer>Handmade with love</footer>
+
+<div class="bar"><div class="in">
+  <p class="status" id="msg" role="status">Add at least one item to order.</p>
+  <button class="btn go" id="open">Review &amp; Place Order</button>
+</div></div>
+
+<section id="po" hidden aria-label="Place order"><div class="po">
+  <button class="back" id="back">← Back to products</button>
+  <h2>Place Order</h2>
+  <div id="lines"></div>
+  <div class="tot"><span>Total bill amount</span><span id="ptot"></span></div>
+  <input type="text" id="cname" placeholder="Your name" autocomplete="name" aria-label="Your name">
+  <div class="how">
+    <b>How to place your order</b>
+    <ol>
+      <li>Tap <b style="display:inline;font-size:inherit">Copy order message</b> to copy your order details.</li>
+      <li>Tap <b style="display:inline;font-size:inherit">Share order on WhatsApp</b>. Your product images will be shared on WhatsApp automatically.</li>
+      <li>Select Subha’s contact (Beads &amp; Beyond Group Admin) and paste the copied message before sending.</li>
+    </ol>
+    <p>You will receive a confirmation of availability for your order, along with the production time, so that you know when your products will be delivered. Thank you for shopping at Beads &amp; Beyond!</p>
+  </div>
+  <div class="row">
+    <button class="btn alt" id="copy">Copy order message</button>
+    <button class="btn go" id="place">Share order on WhatsApp</button>
+  </div>
+  <p class="status" id="pmsg" role="status"></p>
+  <div id="fb"></div>
+  <details><summary>Preview message</summary><pre id="pv"></pre></details>
+</div></section>
+
+<script src="products.js"></script>
+<script>
+/* ===== SETTINGS ===== */
+const BRAND = "Beads & Beyond by Subha";
+// Leave empty so customers pick Subha's chat themselves.
+// To send straight to a number later, use country code + number, digits only, e.g. "919876543210".
+const OWNER_NUMBER = "";
+// Paste the "Publish to web" CSV link of your Google Sheet here (see the README). Leave empty to use products.js.
+const SHEET_CSV_URL = "";
+const CUSTOM_HINT = "Please let Subha know if you would like to change the colour or pattern, use your own beads, or make any other customization to this product.";
+/* ==================== */
+
+const PH=["#f8ead3","#efd7b4","#fffdf8"];
+const $=id=>document.getElementById(id);
+const cart={};let catalog=[];
+const rs=n=>"₹"+n.toLocaleString("en-IN");
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+function ph(code){let h=0;for(const c of code)h=(h+c.charCodeAt(0))%3;return "data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='${PH[h]}'/><circle cx='50' cy='50' r='20' fill='#c99a55' opacity='.5'/></svg>`)}
+
+/* ---- Google Sheet support ---- */
+function parseCSV(t){const rows=[];let r=[],f="",q=false;
+  for(let i=0;i<t.length;i++){const c=t[i];
+    if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}
+    else if(c=='"')q=true;else if(c==","){r.push(f);f=""}
+    else if(c=="\n"||c=="\r"){if(c=="\r"&&t[i+1]=="\n")i++;r.push(f);rows.push(r);r=[];f=""}
+    else f+=c}
+  if(f||r.length){r.push(f);rows.push(r)}return rows}
+const KNOWN=[["bracelet","Bracelets"],["earring","Earrings"],["set","Sets"],["kid","Kids"],["chain","Necklaces"],["necklace","Necklaces"]];
+function tags(s){const out=new Set();
+  for(const tok of String(s||"").split(/[,;|]/).map(x=>x.trim()).filter(Boolean)){
+    let hit=false;for(const [k,v] of KNOWN)if(tok.toLowerCase().includes(k)){out.add(v);hit=true}
+    if(!hit)out.add(tok)}
+  return [...out]}
+function fromSheet(rows){
+  if(rows.length<2)return [];
+  const h=rows[0].map(x=>x.trim().toLowerCase()),ix=re=>h.findIndex(x=>re.test(x));
+  const iC=ix(/code/),iN=ix(/name/),iK=ix(/categor/),iP=ix(/mrp|price/),iS=ix(/show|visible|website/),iI=ix(/image|photo|picture/);
+  if(iC<0||iN<0)return [];
+  return rows.slice(1).filter(r=>(r[iC]||"").trim()&&(r[iN]||"").trim()&&!/^(no|n|false|hide|hidden)$/i.test((r[iS]||"").trim())).map(r=>{
+    const code=r[iC].trim(),im=(r[iI]||"").trim();
+    return {code,name:r[iN].trim(),cats:tags(r[iK]),price:parseInt(String(r[iP]||"").replace(/[^\d]/g,""))||0,
+      img:/^https?:/i.test(im)?im:(im?"images/"+im:`images/${code}.jpg`)}})}
+async function loadProducts(){
+  if(SHEET_CSV_URL){
+    try{const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),8000);
+      const res=await fetch(SHEET_CSV_URL,{signal:ctl.signal,cache:"no-store"});clearTimeout(to);
+      if(res.ok){const list=fromSheet(parseCSV(await res.text()));if(list.length)return list}}catch(e){}}
+  return PRODUCTS}
+
+/* ---- Page ---- */
+function render(){
+  const pref=["Bracelets","Earrings","Sets","Kids","Necklaces"],all=[...new Set(catalog.flatMap(p=>p.cats))];
+  const present=[...pref.filter(c=>all.includes(c)),...all.filter(c=>!pref.includes(c)).sort()];
+  $("tabs").innerHTML=["All",...present].map(t=>`<button data-t="${esc(t)}" aria-pressed="${t==="All"}">${esc(t)}</button>`).join("");
+  $("grid").innerHTML=catalog.map(p=>`
+<article class="card" data-code="${esc(p.code)}" data-cats="${esc(p.cats.join("|"))}">
+  <img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" onerror="this.onerror=null;this.src=ph(this.closest('.card').dataset.code)">
+  <div class="body">
+    <div><div class="name">${esc(p.name)}</div>
+      <div class="meta"><span>${esc(p.code)}</span>${p.price?`<span class="price">${rs(p.price)}</span>`:""}</div></div>
+    <div class="qty"><button aria-label="Remove one ${esc(p.name)}" data-d="-1">−</button><output>0</output><button aria-label="Add one ${esc(p.name)}" data-d="1">+</button></div>
+    <label class="cz"><input type="checkbox"><span>Customize this product (made to order)</span></label>
+    <div class="czbox"><p class="hint">${CUSTOM_HINT}</p>
+      <textarea rows="3" placeholder="Type your customization request here" aria-label="Customization request for ${esc(p.name)}"></textarea></div>
+  </div>
+</article>`).join("")}
+
+$("tabs").onclick=e=>{const t=e.target.dataset.t;if(!t)return;
+  [...$("tabs").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===t));
+  document.querySelectorAll(".card").forEach(c=>c.hidden=!(t==="All"||c.dataset.cats.split("|").includes(t)))};
+
+let ver=0,built={ver:-1,file:null},timer;
+function changed(){ver++;status();clearTimeout(timer);timer=setTimeout(prepare,500)}
+const st=code=>cart[code]||(cart[code]={qty:0,custom:false,note:""});
+$("grid").addEventListener("click",e=>{const b=e.target.closest("button[data-d]");if(!b)return;
+  const card=b.closest(".card"),s=st(card.dataset.code);
+  s.qty=Math.max(0,s.qty+Number(b.dataset.d));
+  card.querySelector("output").textContent=s.qty;card.classList.toggle("on",s.qty>0);changed()});
+$("grid").addEventListener("change",e=>{if(e.target.type!=="checkbox")return;
+  const card=e.target.closest(".card"),s=st(card.dataset.code);s.custom=e.target.checked;
+  card.querySelector(".czbox").classList.toggle("open",s.custom);changed()});
+$("grid").addEventListener("input",e=>{if(e.target.tagName!=="TEXTAREA")return;
+  st(e.target.closest(".card").dataset.code).note=e.target.value.trim();changed()});
+
+function items(){return catalog.filter(p=>cart[p.code]&&cart[p.code].qty>0).map(p=>{const s=cart[p.code];return {...p,qty:s.qty,custom:s.custom,note:s.custom?s.note:""}})}
+function total(){return items().reduce((s,i)=>s+i.qty*i.price,0)}
+function status(){const n=items().reduce((s,i)=>s+i.qty,0),t=total();
+  $("msg").textContent=n?`${n} item${n>1?"s":""} in your order`+(t?` · ${rs(t)}`:""):"Add at least one item to order."}
+
+function text(){
+  const L=items(),nm=$("cname").value.trim(),mto=L.some(i=>i.custom);
+  const lines=L.map(i=>`${i.code}${i.qty>1?" × "+i.qty:""} – ${rs(i.price*i.qty)}`+(i.custom?`\n   Customization request: ${i.note||"details to be shared in the chat"}`:""));
+  const intro=mto
+    ?"Hi Subha, I would like to place a made-to-order request for the following products, including the customizations mentioned below. Please confirm the availability of these products and let me know the production time, so that I know when they will be ready. Thank you!"
+    :"Hi Subha, I would like to place an order for the following products. Please confirm their availability and let me know the production time, so that I know when they will be ready. Thank you!";
+  return [intro,nm?`My name: ${nm}`:"",`Products ordered:\n${lines.join("\n")}`,`Total bill amount: ${rs(total())}`,"Looking forward to receiving my order 😊"].filter(Boolean).join("\n\n")}
+
+function load(src){return new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src})}
+function wrap(ctx,t,x,y,w,max){const words=t.split(" ");let line="",n=0;
+  for(const wd of words){const test=line+wd+" ";if(ctx.measureText(test).width>w&&line){ctx.fillText(line,x,y+n*22);line=wd+" ";if(++n>=max)return}else line=test}
+  if(n<max)ctx.fillText(line,x,y+n*22)}
+async function makeImage(list){
+  const cols=list.length>1?2:1,cw=400,ch=470,pad=16,rows=Math.ceil(list.length/cols);
+  const c=document.createElement("canvas");c.width=cols*cw+(cols+1)*pad;c.height=rows*ch+(rows+1)*pad+60;
+  const x=c.getContext("2d");x.fillStyle="#fef9f1";x.fillRect(0,0,c.width,c.height);
+  x.fillStyle="#4a3b2c";x.font="bold 24px Georgia,serif";x.fillText(BRAND+" · Order",pad,40,c.width-2*pad);
+  const imgs=await Promise.all(list.map(i=>load(i.img)));
+  list.forEach((it,k)=>{const ox=pad+(k%cols)*(cw+pad),oy=60+pad+Math.floor(k/cols)*(ch+pad);
+    x.fillStyle="#fffdf8";x.fillRect(ox,oy,cw,ch);
+    const im=imgs[k];
+    if(im){const s=Math.max(cw/im.width,300/im.height),sw=cw/s,sh=300/s;x.drawImage(im,(im.width-sw)/2,(im.height-sh)/2,sw,sh,ox,oy,cw,300)}
+    else{x.fillStyle="#f8ead3";x.fillRect(ox,oy,cw,300)}
+    x.fillStyle="#4a3b2c";x.font="bold 19px sans-serif";x.fillText(`${it.code}  ×${it.qty}`,ox+12,oy+328);
+    x.font="17px sans-serif";x.fillText(it.name,ox+12,oy+352,cw-24);
+    if(it.custom){x.fillStyle="#94662f";x.font="15px sans-serif";wrap(x,"Customization request: "+(it.note||"details to be shared in the chat"),ox+12,oy+380,cw-24,3)}});
+  return new Promise(r=>c.toBlob(r,"image/png"))}
+async function prepare(){
+  const v=ver,list=items();
+  if(!list.length){built={ver:v,file:null};return}
+  try{const blob=await makeImage(list);built={ver:v,file:new File([blob],"order.png",{type:"image/png"})}}catch(e){built={ver:v,file:null}}}
+
+/* ---- Place Order page ---- */
+function pv(){$("pv").textContent=text()}
+$("open").onclick=()=>{
+  const L=items();if(!L.length){$("msg").textContent="Add at least one item first.";return}
+  $("lines").innerHTML=L.map(i=>`<div class="line"><img src="${esc(i.img)}" alt="" onerror="this.onerror=null;this.src=ph('${esc(i.code)}')">
+    <div class="t"><b>${esc(i.code)}</b>${i.qty>1?" × "+i.qty:""}<small>${esc(i.name)}</small>
+    ${i.custom?`<div class="c">Customization request: ${esc(i.note||"details to be shared in the chat")}</div>`:""}</div>
+    <div>${rs(i.price*i.qty)}</div></div>`).join("");
+  $("ptot").textContent=rs(total());$("pmsg").textContent="";$("fb").style.display="none";pv();
+  $("po").hidden=false;document.body.style.overflow="hidden";$("po").scrollTop=0;
+  if(built.ver!==ver)prepare()};
+$("back").onclick=()=>{$("po").hidden=true;document.body.style.overflow=""};
+$("cname").oninput=pv;
+
+function waLink(t){return (OWNER_NUMBER?`https://wa.me/${OWNER_NUMBER}`:"https://wa.me/")+"?text="+encodeURIComponent(t)}
+function showFallback(file,t){
+  const fb=$("fb");fb.style.display="block";const url=file?URL.createObjectURL(file):null;
+  fb.innerHTML=`<p>${file?"Your browser can’t attach the photos automatically. Save the order image, open WhatsApp, then attach it to Subha’s chat and paste the copied message.":"Open WhatsApp to send your order message."}</p>
+  <div class="row">${url?`<a class="btn alt" href="${url}" download="order.png">Save order image</a>`:""}<a class="btn go" href="${waLink(t)}">Open WhatsApp</a></div>`}
+async function place(){
+  $("fb").style.display="none";const t=text();
+  if(built.ver!==ver){$("pmsg").textContent="Preparing your order…";await prepare()}
+  const file=built.file;
+  try{navigator.clipboard.writeText(t).catch(()=>{})}catch(e){}
+  if(file&&navigator.canShare&&navigator.canShare({files:[file]})){
+    try{await navigator.share({files:[file],text:t});$("pmsg").textContent="In WhatsApp, select Subha’s contact and paste the copied message before sending.";return}
+    catch(e){if(e.name==="AbortError"){$("pmsg").textContent="Order not sent.";return}}}
+  showFallback(file,t);$("pmsg").textContent="One more step to send your order."}
+async function copy(){
+  try{await navigator.clipboard.writeText(text());$("pmsg").textContent="Order message copied. You can now share your order on WhatsApp."}
+  catch(e){$("pmsg").textContent="Copy didn’t work. Open the message preview below and copy it from there."}}
+$("place").onclick=place;$("copy").onclick=copy;
+
+loadProducts().then(l=>{catalog=l;render();status()});
+</script>
+</body>
+</html>
