@@ -22,6 +22,7 @@ h1{margin:0;font:500 30px/1.15 Georgia,"Times New Roman",serif;letter-spacing:.2
 .tabs button[aria-pressed=true]{background:var(--deep);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;max-width:1000px;margin:18px auto;padding:0 16px}
 .card{background:var(--pearl);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card[hidden]{display:none}
 .card.on{border-color:var(--deep);box-shadow:0 0 0 2px var(--deep)}
 .card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--cream)}
 .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
@@ -117,7 +118,7 @@ const BRAND = "Beads & Beyond by Subha";
 // To send straight to a number later, use country code + number, digits only, e.g. "919876543210".
 const OWNER_NUMBER = "";
 // Paste the "Publish to web" CSV link of your Google Sheet here (see the README). Leave empty to use products.js.
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS24Ep4U1pI8GWBIDnp63UxB5KATeiRL8_GVkqsORJMlcJGJgYy7wMc8Ned-6sJ8A/pub?gid=1403955814&single=true&output=csv";
+const SHEET_CSV_URL = "";
 const CUSTOM_HINT = "Please let Subha know if you would like to change the colour or pattern, use your own beads, or make any other customization to this product.";
 /* ==================== */
 
@@ -204,14 +205,14 @@ function text(){
   const intro=mto
     ?"Hi Subha, I would like to place a made-to-order request for the following products, including the customizations mentioned below. Please confirm the availability of these products and let me know the production time, so that I know when they will be ready. Thank you!"
     :"Hi Subha, I would like to place an order for the following products. Please confirm their availability and let me know the production time, so that I know when they will be ready. Thank you!";
-  return [intro,nm?`My name: ${nm}`:"",`Products ordered:\n${lines.join("\n")}`,`Total bill amount: ${rs(total())}`,"Looking forward to receiving my order 😊"].filter(Boolean).join("\n\n")}
+  return [intro,nm?`My name: ${nm}`:"",`Products ordered:\n${lines.join("\n")}`,`Total bill amount: ${rs(total())}`,"Please note: I understand that the availability of materials may change the look of the product. If that happens, I would like to request a photo of the finished product and confirm again whether I would like to purchase it.","Looking forward to receiving my order 😊"].filter(Boolean).join("\n\n")}
 
 function load(src){return new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src})}
 function wrap(ctx,t,x,y,w,max){const words=t.split(" ");let line="",n=0;
   for(const wd of words){const test=line+wd+" ";if(ctx.measureText(test).width>w&&line){ctx.fillText(line,x,y+n*22);line=wd+" ";if(++n>=max)return}else line=test}
   if(n<max)ctx.fillText(line,x,y+n*22)}
 async function makeImage(list){
-  const cols=list.length>1?2:1,cw=400,ch=470,pad=16,rows=Math.ceil(list.length/cols);
+  const cols=list.length>1?2:1,cw=400,ch=580,pad=16,rows=Math.ceil(list.length/cols);
   const c=document.createElement("canvas");c.width=cols*cw+(cols+1)*pad;c.height=rows*ch+(rows+1)*pad+60;
   const x=c.getContext("2d");x.fillStyle="#fef9f1";x.fillRect(0,0,c.width,c.height);
   x.fillStyle="#4a3b2c";x.font="bold 24px Georgia,serif";x.fillText(BRAND+" · Order",pad,40,c.width-2*pad);
@@ -219,11 +220,11 @@ async function makeImage(list){
   list.forEach((it,k)=>{const ox=pad+(k%cols)*(cw+pad),oy=60+pad+Math.floor(k/cols)*(ch+pad);
     x.fillStyle="#fffdf8";x.fillRect(ox,oy,cw,ch);
     const im=imgs[k];
-    if(im){const s=Math.max(cw/im.width,300/im.height),sw=cw/s,sh=300/s;x.drawImage(im,(im.width-sw)/2,(im.height-sh)/2,sw,sh,ox,oy,cw,300)}
-    else{x.fillStyle="#f8ead3";x.fillRect(ox,oy,cw,300)}
-    x.fillStyle="#4a3b2c";x.font="bold 19px sans-serif";x.fillText(`${it.code}  ×${it.qty}`,ox+12,oy+328);
-    x.font="17px sans-serif";x.fillText(it.name,ox+12,oy+352,cw-24);
-    if(it.custom){x.fillStyle="#94662f";x.font="15px sans-serif";wrap(x,"Customization request: "+(it.note||"details to be shared in the chat"),ox+12,oy+380,cw-24,3)}});
+    if(im){const s=Math.max(cw/im.width,400/im.height),sw=cw/s,sh=400/s;x.drawImage(im,(im.width-sw)/2,(im.height-sh)/2,sw,sh,ox,oy,cw,400)}
+    else{x.fillStyle="#f8ead3";x.fillRect(ox,oy,cw,400)}
+    x.fillStyle="#4a3b2c";x.font="bold 19px sans-serif";x.fillText(it.name,ox+12,oy+432,cw-24);
+    x.font="16px sans-serif";x.fillStyle="#8a7861";x.fillText(`${it.code}  ×${it.qty}`,ox+12,oy+458);
+    if(it.custom){x.fillStyle="#94662f";x.font="15px sans-serif";wrap(x,"Customization request: "+(it.note||"details to be shared in the chat"),ox+12,oy+490,cw-24,3)}});
   return new Promise(r=>c.toBlob(r,"image/png"))}
 async function prepare(){
   const v=ver,list=items();
@@ -235,7 +236,7 @@ function pv(){$("pv").textContent=text()}
 $("open").onclick=()=>{
   const L=items();if(!L.length){$("msg").textContent="Add at least one item first.";return}
   $("lines").innerHTML=L.map(i=>`<div class="line"><img src="${esc(i.img)}" alt="" onerror="this.onerror=null;this.src=ph('${esc(i.code)}')">
-    <div class="t"><b>${esc(i.code)}</b>${i.qty>1?" × "+i.qty:""}<small>${esc(i.name)}</small>
+    <div class="t"><b>${esc(i.name)}</b><small>${esc(i.code)}${i.qty>1?" × "+i.qty:""}</small>
     ${i.custom?`<div class="c">Customization request: ${esc(i.note||"details to be shared in the chat")}</div>`:""}</div>
     <div>${rs(i.price*i.qty)}</div></div>`).join("");
   $("ptot").textContent=rs(total());$("pmsg").textContent="";$("fb").style.display="none";pv();
