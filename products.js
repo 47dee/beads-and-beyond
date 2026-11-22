@@ -26,7 +26,7 @@ const PRODUCTS = [
   {"code": "EB-OPS", "name": "Olive Pearl Set (Earrings and Bracelet)", "cats": ["Bracelets", "Earrings", "Sets"], "price": 220, "img": "images/EB-OPS.jpg"},
   {"code": "EB-ORP", "name": "Olive Rose Pearl Set (Earrings and Bracelet)", "cats": ["Bracelets", "Earrings", "Sets"], "price": 220, "img": "images/EB-ORP.jpg"},
   {"code": "EA-PD", "name": "Pearl Drop Earrings", "cats": ["Earrings"], "price": 100, "img": "images/EA-PD.jpg"},
-  {"code": "BR-ADPBP", "name": "Pond Blue Pearl Bracelet", "cats": ["Bracelets"], "price": 100, "img": "images/BR-ADPBP.jpg"},
+  {"code": "BR-KBPBP", "name": "Pond Blue Pearl Bracelet", "cats": ["Bracelets", "Kids"], "price": 100, "img": "images/BR-KBPBP.jpg"},
   {"code": "BR-ADCBB", "name": "Cherry Blossom Bracelet", "cats": ["Bracelets"], "price": 150, "img": "images/BR-ADCBB.jpg"},
   {"code": "CN-PD", "name": "Pearl Drop Chain", "cats": ["Necklaces"], "price": 250, "img": "images/CN-PD.jpg"},
   {"code": "CN-EG", "name": "Emerald Gold Chain", "cats": ["Necklaces"], "price": 300, "img": "images/CN-EG.jpg"}
