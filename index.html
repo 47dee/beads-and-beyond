@@ -74,8 +74,8 @@ button:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible{
 </header>
 
 <div class="notice">
-  <b>Products are Made to Order</b>
-  <p>All products are made to order, once your order is confirmed. The production time may vary depending on the order quantity, design and customization requirements. The estimated completion timeline will be communicated at the time of order confirmation. Thank you for understanding!</p>
+  <b>Handcrafted to Order</b>
+  <p>All our products are handcrafted with care and made to order, once your order is confirmed. The time taken to make your order may vary depending on the order quantity, design and customization requirements. The estimated completion timeline will be communicated at the time of order confirmation. Thank you for understanding!</p>
   <p class="disc"><b style="display:inline;font-size:inherit">Disclaimer:</b> The images shown may not be an accurate representation of the colours and beads of the actual products. Slight variations may occur due to lighting, screen settings and the availability of materials.</p>
 </div>
 
@@ -101,7 +101,7 @@ button:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible{
       <li>Tap <b style="display:inline;font-size:inherit">Share order on WhatsApp</b>. Your product images will be shared on WhatsApp automatically.</li>
       <li>Select Subha’s contact (Beads &amp; Beyond Group Admin) and paste the copied message before sending.</li>
     </ol>
-    <p>You will receive a confirmation of availability for your order, along with the production time, so that you know when your products will be delivered. Thank you for shopping at Beads &amp; Beyond!</p>
+    <p>You will receive a confirmation of availability for your order, along with the estimated making time, so that you know when your products will be delivered. Thank you for shopping at Beads &amp; Beyond!</p>
   </div>
   <div class="row">
     <button class="btn alt" id="copy">Copy order message</button>
@@ -205,8 +205,8 @@ function text(){
   const L=items(),nm=$("cname").value.trim(),mto=L.some(i=>i.custom);
   const lines=L.map(i=>`${i.code}${i.qty>1?" × "+i.qty:""} – ${rs(i.price*i.qty)}`+(i.custom?`\n   Customization request: ${i.note||"details to be shared in the chat"}`:""));
   const intro=mto
-    ?"Hi Subha, I would like to place a made-to-order request for the following products, including the customizations mentioned below. Please confirm the availability of these products and let me know the production time, so that I know when they will be ready. Thank you!"
-    :"Hi Subha, I would like to place an order for the following products. Please confirm their availability and let me know the production time, so that I know when they will be ready. Thank you!";
+    ?"Hi Subha, I would like to place a made-to-order request for the following products, including the customizations mentioned below. Please confirm the availability of these products and let me know the making time, so that I know when they will be ready. Thank you!"
+    :"Hi Subha, I would like to place an order for the following products. Please confirm their availability and let me know the making time, so that I know when they will be ready. Thank you!";
   return [intro,nm?`My name: ${nm}`:"",`Products ordered:\n${lines.join("\n")}`,`Total bill amount: ${rs(total())}`,"Please note: I understand that the availability of materials may change the look of the product. If that happens, I would like to request a photo of the finished product and confirm again whether I would like to purchase it.","Looking forward to receiving my order 😊"].filter(Boolean).join("\n\n")}
 
 function load(src){return new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src})}
